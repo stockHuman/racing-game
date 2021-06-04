@@ -11,7 +11,7 @@ import { Help } from './ui/Help'
 import { KeyboardControls } from './controls/KeyboardControls'
 
 // Heightfield needs some more work ...
-//import { Heightmap } from './utils/Heightmap'
+import { Heightfield } from './models/track/Heightmap'
 
 export function App() {
   const editor = useStore((state) => state.editor)
@@ -69,12 +69,12 @@ function Game() {
         shadow-camera-bottom={-150}
       />
       <Physics broadphase="SAP" contactEquationRelaxation={4} friction={1e-3} allowSleep>
-        <Ground rotation={[-Math.PI / 2, 0, 0]} userData={{ id: 'floor' }} />
-        {/*<Heightmap
+        {/* <Ground rotation={[-Math.PI / 2, 0, 0]} userData={{ id: 'floor' }} /> */}
+        <Heightfield
             elementSize={1.01} // uniform xy scale
-            position={[337, -18.03, -451]}
+            position={[320, -20, -440]}
             rotation={[-Math.PI / 2, 0, -Math.PI]}
-          />*/}
+          />
         <Vehicle {...vehicleStart}>
           {/* Mount the main-lights target as a child to the vehicle, so that light follows it */}
           {light && <primitive object={light.target} />}
